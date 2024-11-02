@@ -1,7 +1,28 @@
 <template>
   <v-app>
+    <v-navigation-drawer v-model="isDrawerOpen">
+      <v-list>
+        <v-list-subheader>Menu</v-list-subheader>
+        <v-list-item prepend-icon="mdi-home">Home</v-list-item>
+        <v-list-item prepend-icon="mdi-account">Users</v-list-item>
+
+        <v-list-group value="Clientes">
+          <template #activator="{ props }">
+            <v-list-item 
+            v-bind="props"
+            prepend-icon="mdi-account-circle"
+            title="Clientes"
+            ></v-list-item>
+          </template>
+
+          <v-list-item prepend-icon="mdi-currency-usd">Faturamento</v-list-item>
+          <v-list-item prepend-icon="mdi-chart-line">Relatório</v-list-item>
+        </v-list-group>
+      </v-list>
+    </v-navigation-drawer>
+
     <v-app-bar flat class="border-b">
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click="isDrawerOpen = !isDrawerOpen"></v-app-bar-nav-icon>
       <v-app-bar-title>Meu App</v-app-bar-title>
       
       <template #append>
@@ -183,13 +204,18 @@
               </v-card-actions>
             </v-card>
           </v-col>
-
         </v-row>
       </v-container>
     </v-main>
   </v-app>
 </template>
 
-<script setup>
-
+<script>
+export default {
+  data() {
+    return {
+      isDrawerOpen: false,
+    }
+  },
+}
 </script>
